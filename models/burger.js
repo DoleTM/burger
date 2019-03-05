@@ -2,11 +2,23 @@ var orm = require("../config/orm.js");
 
 var burger = {
 
-   orm1 :orm.selectAll,
+   selectAll: function(callback){
+      orm.selectAll("burgers", function (result) {
+         callback(result);
+      });
+   },
 
-   orm2: orm.insertOne,
+   insertOne: function(columns, values, callback){
+      orm.insertOne("burgers", columns, values, function(result){
+         callback(result);
+      });
+   },
 
-   orm3: orm.updateOne
+   updateOne: function(objectColumnVals, condition, callback){
+      orm.updateOne("burgers", objectColumnVals, condition, function(result){
+         callback(result);
+      });
+   }
 };
 
 module.exports = burger;
