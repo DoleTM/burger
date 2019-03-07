@@ -1,27 +1,21 @@
+// Dependencies
 var express = require("express");
 var exphbs = require("express-handlebars");
-var mysql = require("mysql");
-
+var PORT = process.env.PORT || 8080;
 var app = express();
+
+// Serve static content/parse app body as JSON
+app.use(express.static("public"));
+app.use(express.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Nested below is the setup code to connect node to mysql
-var connection = require("/config/connection.js");
+// Import routes from burgers_controller.js and give the server access
+var router = require("./controllers/burgers_controller.js");
 
-// Nested below is the 
-var orm = require("/config/orm.js");
-orm.selectAll();
+app.use(router);
 
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-
-  console.log("connected as id " + connection.threadId);
-});
-
+// Start server to begin listening to client requests
 app.listen(PORT, function() {
-  console.log("Server is listening on PORT: " + PORT);
+  console.log("Server is listening on: http://localhost:" + PORT);
 });

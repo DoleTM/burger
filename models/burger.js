@@ -1,3 +1,4 @@
+// Dependency
 var orm = require("../config/orm.js");
 
 var burger = {
@@ -21,4 +22,5 @@ var burger = {
    }
 };
 
+// This will be exported to burgers_controller.js
 module.exports = burger;

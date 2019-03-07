@@ -5,7 +5,10 @@
 <ul>
 	{{#each burgers}}
 		{{#unless devoured}}
-			{{> burger/burgers devoured=false}}</p>
+			<p>
+				{{id}} {{burger_name}}
+				<button class="eat" data-id="{{id}}">EAT!</button>
+			</p>
 		{{/unless}}
 	{{/each}}
 </ul>
@@ -15,17 +18,14 @@
 <ul>
 	{{#each burger}}
 		{{#if devoured}}
-			{{> burger/burgers devoured=true}}
+		{{id}}	{{burger_name}}
 		{{/if}}
 	{{/each}}
 </ul>
 
-<form action="/" method="POST">
-	<textarea type="text" name="banana"></textarea>
+<form action="/" method="POST" class="add-burger">
+	<label for="burger-text">Burger: </label>
+	<textarea type="text" id="burger-text" name="name" placeholder="Handlebars Burger"></textarea>
 
-	<button type="submit">Submit</button>
+	<button type="submit">Add your Burger</button>
 </form>
-
-<script>
-    // Logic for adding/deleting and updating burgers
-</script>
