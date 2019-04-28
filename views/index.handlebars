@@ -1,31 +1,39 @@
-<h1>Add a burger!</h1>
+<header>
+	<h1>Welcome to Good Burger, Home of the Good Burger</h1>
+</header>
 
-<h2>What burger sounds good to eat?</h2>
+{{!-- Add Burgers Section --}}
+<h2>Add a burger!</h2>
 
-<ul>
+<div class="row">
+	<div class="col">
+		<form class="form-group">
+			<input class="burger-name" type="text" name="add-burger" placeholder="Add a burger">
+			<button class="add-burger btn" type="submit">Add a burger to the menu</button>
+		</form>
+	</div>
+</div>
+
+{{!-- View Burgers Section --}}
+<div class="available-burgers col">
 	{{#each burgers}}
-		{{#unless devoured}}
-			<p>
-				{{id}} {{burger_name}}
-				<button class="eat" data-id="{{id}}">EAT!</button>
-			</p>
-		{{/unless}}
+	{{#unless devoured}}
+	<p>
+		{{id}} {{burger_name}}
+		<button class="eat-burger" data-id="{{id}}">EAT!</button>
+	</p>
+	{{/unless}}
 	{{/each}}
-</ul>
+</div>
 
-<h2>Burgers that are eaten</h2>
+{{!-- Eaten Burgers Section --}}
+<div class="eaten-burgers col">
 
-<ul>
-	{{#each burger}}
-		{{#if devoured}}
-		{{id}}	{{burger_name}}
-		{{/if}}
+	<h2>Burgers that have been eaten</h2>
+
+	{{#each burgers}}
+	{{#if devoured}}
+	{{id}} {{burger_name}}
+	{{/if}}
 	{{/each}}
-</ul>
-
-<form action="/" method="POST" class="add-burger">
-	<label for="burger-text">Burger: </label>
-	<textarea type="text" id="burger-text" name="name" placeholder="Handlebars Burger"></textarea>
-
-	<button type="submit">Add your Burger</button>
-</form>
+</div>
